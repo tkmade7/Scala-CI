@@ -1,7 +1,7 @@
 version: 2
 jobs:
     build:
-        working_directory: ~/sampleScala
+        working_directory: ~/samplescala
         docker: 
             - image: openjdk:8
         environment:
@@ -24,7 +24,7 @@ jobs:
                 key: sbt-cache
             - run:
                 name: Compile samplescala dist package
-                command: cat /dev/null | sbt clean test:compile
+                command: cat /dev/null | sbt clean update dist
             - store_artifacts:
                 path: target/universal/samplescala.zip
                 destination: samplescala
@@ -34,7 +34,6 @@ jobs:
                     - "~/.ivy2/cache"
                     - "~/.sbt"
                     - "~/.m2"
-            - run: sbt dist
             - deploy:
                 command: |
                         mv target/universal/samplescala.zip $CIRCLE_ARTIFACTS/$ARTIFACT_BUILD
