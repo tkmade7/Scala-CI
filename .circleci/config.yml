@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/sampleScala
         docker: 
-            image: openjdk:8
+            - image: openjdk:8
         environment:
             SBT_VERSION: 1.0.4
         steps:
